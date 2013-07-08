@@ -1,7 +1,6 @@
-// from https://github.com/adafruit/LPD8806
 #include "LPD8806.h"
 #include "SPI.h"
-#include "display_class.h"
+#include "display.h"
 
 // settings for teensy 2.0
 const int nLEDs = 32;
@@ -12,10 +11,10 @@ const int powerPin = 11;
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin);
 
 void setup() {
+  Serial.begin(9600);
   randomSeed(analogRead(0));
   display.begin();
   display.show();
-  Serial.begin(9600);
 }
 
 void loop() {
