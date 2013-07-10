@@ -7,8 +7,9 @@ const int nLEDs = 32;
 const int dataPin  = 22;
 const int clockPin = 10;
 const int powerPin = 11;
+const int power = 20;
 
-DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin);
+DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
 
 void setup() {
   Serial.begin(9600);
