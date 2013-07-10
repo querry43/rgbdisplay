@@ -28,17 +28,23 @@ void loop() {
 //  SS  TTT  LLL
 // SS    T   L
 
-static const uint16_t tetris_grid_size = 9;
+static const uint16_t tetris_grid_size = 15;
 static const char* tetris_grid =
-  "OOJJJZZIJ"
-  "OOTTTZIIJ"
-  "LLSTJJIJJ"
-  "ILSSJJILO"
-  "ILTSJJILO"
-  "ITTTJJSLL"
-  "IZJOOTSST"
-  "ZZJOOTTSL"
-  "ZJJISTOOL"
+  "ILLIJOOLZZLLLTT"
+  "OJLJJOOLZOOZZTS"
+  "OJLTTTSSJOOTZZL"
+  "JJSSTSSZJJJTTJJ"
+  "TSSJJJZZLLLTSLL"
+  "ZZLLSJZTLIZZSSL"
+  "SZZLSSTTTISZZSL"
+  "SOOLTSOOLISSOOJ"
+  "TOOTTTOOLIJSOOJ"
+  "ZJIIIISSLLJJJIJ"
+  "ZJLOOSSJIIIITIT"
+  "JJLOOLLJJJSTTIJ"
+  "OOLLZJLTTTSSTIJ"
+  "OOTZZJLSTOOSZLL"
+  "ZTTZJJZSSOOZZOO"
 ;
 
 uint32_t tetris_grid_color(int x, int y) {
@@ -50,8 +56,8 @@ uint32_t tetris_grid_color(int x, int y) {
     display.Color(127, 0, 127),
     display.Color(0, 0, 127),
     display.Color(0, 127, 0),
-    display.Color(127, 80, 80),
-    display.Color(0, 127, 127)
+    display.Color(127, 127, 0),
+    display.Color(0, 127, 40)
   };
   
   switch(tetris_grid[index]) {
