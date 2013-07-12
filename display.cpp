@@ -1,8 +1,10 @@
+#include <Arduino.h>
+
 #include "LPD8806.h"
 #include "SPI.h"
 #include "display.h"
 
-const uint16_t DisplayWrapper::yx_to_index[6][6] = {
+const uint16_t yx_to_index[6][6] = {
   {-1,  0,  1,  2,  3, -1},
   { 4,  5,  6,  7,  8,  9},
   {10, 11, 12, 13, 14, 15},
