@@ -3,6 +3,7 @@
 #include "display.h"
 #include "tetris.h"
 #include "bug.h"
+#include "balls.h"
 #include "utils.h"
 
 
@@ -32,6 +33,14 @@ void setup() {
 
 void loop() {
   static long previousMillis;
+
+  previousMillis = millis();
+
+  while (millis() - previousMillis < changePatternInterval) {
+    move_balls();
+    show_balls();
+    delay(50ul);
+  }
 
   previousMillis = millis();
 
