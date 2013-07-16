@@ -13,12 +13,15 @@ const int clockPin = 10;
 const int powerPin = 11;
 const int power = 20;
 
+const long changePatternInterval = 1000 * 60 * 30;
+
+
 #define BUG_SPEED (100ul * 5)
 #define TETRIS_SPEED (1000ul * 60 * 10)
 
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
 Tetris tetris;
-environment_t environment;
+environment_t bugs;
 
 void setup() {
   Serial.begin(9600);
@@ -27,22 +30,21 @@ void setup() {
   display.show();
 }
 
-long previousMillis = 0;
-const long interval = 1000 * 60 * 30;
-
 void loop() {
-  while (millis() - previousMillis < interval) {
+  static long previousMillis;
+
+  previousMillis = millis();
+
+  while (millis() - previousMillis < changePatternInterval) {
     tetris.drawRandomTetrisGrid();
     delay(TETRIS_SPEED);
   }
 
   previousMillis = millis();
 
-  while (millis() - previousMillis < interval) {
-    environment.advance();
-    environment.show();
+  while (millis() - previousMillis < changePatternInterval) {
+    bugs.advance();
+    bugs.show();
     delay(BUG_SPEED);
   }
-
-  previousMillis = millis();
 }
