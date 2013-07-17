@@ -1,10 +1,16 @@
 #pragma once
 
-#include "display.h"
+#include "widget.h"
 
-extern DisplayWrapper display;
+namespace widget { namespace tetris {
 
-class Tetris {
+#define TETRIS_SPEED (1000ul * 60 * 5)
+
+class Tetris : public widget::Widget {
   public:
-    void drawRandomTetrisGrid();
+    virtual void delay();
+    virtual void show();
+    virtual ~Tetris() {}
 };
+
+} }

@@ -6,6 +6,10 @@
 #include "tetris.h"
 #include "utils.h"
 
+extern DisplayWrapper display;
+
+namespace widget { namespace tetris {
+
 // IIII  JJJ  OO  ZZ
 //         J  OO   ZZ
 //  SS  TTT  LLL
@@ -55,7 +59,7 @@ uint32_t tetris_grid_color(int x, int y) {
   }
 }
 
-void Tetris::drawRandomTetrisGrid() {
+void Tetris::show() {
   uint16_t x_offset = random(tetris_grid_size - 6);
   uint16_t y_offset = random(tetris_grid_size - 6);
   
@@ -67,4 +71,8 @@ void Tetris::drawRandomTetrisGrid() {
   
   display.show();
 }
+
+void Tetris::delay() { ::delay(TETRIS_SPEED); }
+
+} }
 

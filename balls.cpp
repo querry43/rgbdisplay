@@ -3,13 +3,15 @@
 #include "LPD8806.h"
 #include "SPI.h"
 #include "display.h"
-#include "bug.h"
 #include "utils.h"
 #include "balls.h"
 
+extern DisplayWrapper display;
+
+namespace widget { namespace balls {
+
 #define GRID_SIZE 6
 
-#define BALL_DELAY (100ul)
 
 struct local_color_t {
   double r, g, b;
@@ -43,7 +45,7 @@ void move_through_dimension(double & xy, double & dxy) {
 }
 
 void move_balls() {
-  for (int i = 0; i < NUM_BALLS; ++i) {
+  for (unsigned int i = 0; i < NUM_BALLS; ++i) {
     ball_t & b = balls[i];
     move_through_dimension(b.x, b.dx);
     move_through_dimension(b.y, b.dy);
@@ -51,13 +53,11 @@ void move_balls() {
 }
 
 void show_balls() {
-  local_color_t colors[GRID_SIZE][GRID_SIZE];
-
   for (int x = 0; x < GRID_SIZE; ++x) {
     for (int y = 0; y < GRID_SIZE; ++y) {
       local_color_t c = black;
 
-      for (int i = 0; i < NUM_BALLS; ++i) {
+      for (unsigned int i = 0; i < NUM_BALLS; ++i) {
         ball_t & b = balls[i];
         double distance = pow(pow(b.x - x, 2) + pow(b.y - y, 2), 0.5);
         double f = 1.0 / (pow(distance, 2) + 1.0);
@@ -67,11 +67,15 @@ void show_balls() {
         c.b += b.color.b * f;
       }
 
-      display.setPixelColor(x, y, int(c.r / NUM_BALLS * 255) + (int(c.g / NUM_BALLS * 255) << 8) + (int(c.b / NUM_BALLS * 255) << 16));
+      display.setPixelColor(x, y, int(c.r / NUM_BALLS * 255) + (int(c.g / NUM_BALLS * 255) << 8) + (long(c.b / NUM_BALLS * 255) << 16));
     }
   }
   display.show();
 }
 
-//void Balls::update() { move_balls(); }
-//void Balls::show() { show_balls(); }
+
+void Balls::update() { move_balls(); }
+void Balls::delay() { ::delay(BALL_DELAY); }
+void Balls::show() { show_balls(); }
+
+} }

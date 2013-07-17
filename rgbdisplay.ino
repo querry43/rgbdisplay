@@ -2,7 +2,7 @@
 #include "SPI.h"
 #include "display.h"
 #include "tetris.h"
-#include "bug.h"
+#include "bugs.h"
 #include "balls.h"
 #include "utils.h"
 
@@ -14,15 +14,20 @@ const int clockPin = 10;
 const int powerPin = 11;
 const int power = 20;
 
-const long changePatternInterval = 1000 * 60 * 30;
+#define MILLIS_PER_WIDGET 1000ul * 60 * 30
 
-
-#define BUG_SPEED (100ul * 5)
-#define TETRIS_SPEED (1000ul * 60 * 10)
 
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
-Tetris tetris;
-environment_t bugs;
+widget::tetris::Tetris tetris;
+widget::balls::Balls balls;
+widget::bugs::Bugs bugs;
+
+const int numWidgets = 3;
+widget::Widget * widgets[] = {
+  &balls,
+  &tetris,
+  &bugs,
+};
 
 void setup() {
   Serial.begin(9600);
@@ -32,28 +37,18 @@ void setup() {
 }
 
 void loop() {
-  static long previousMillis;
+  static unsigned long previousMillis;
+  static int currentWidget = 0;
 
   previousMillis = millis();
 
-  while (millis() - previousMillis < changePatternInterval) {
-    move_balls();
-    show_balls();
-    delay(50ul);
+  widgets[currentWidget]->reset();
+  widgets[currentWidget]->show();
+  while (millis() - previousMillis < MILLIS_PER_WIDGET) {
+    widgets[currentWidget]->delay();
+    widgets[currentWidget]->update();
+    widgets[currentWidget]->show();
   }
 
-  previousMillis = millis();
-
-  while (millis() - previousMillis < changePatternInterval) {
-    tetris.drawRandomTetrisGrid();
-    delay(TETRIS_SPEED);
-  }
-
-  previousMillis = millis();
-
-  while (millis() - previousMillis < changePatternInterval) {
-    bugs.advance();
-    bugs.show();
-    delay(BUG_SPEED);
-  }
+  currentWidget = (currentWidget + 1) % numWidgets;
 }

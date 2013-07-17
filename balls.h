@@ -1,10 +1,17 @@
 #pragma once
 
-#include <Arduino.h>
-#include "display.h"
+#include "widget.h"
 
-extern DisplayWrapper display;
+namespace widget { namespace balls {
 
+#define BALL_DELAY (50ul)
 
-void show_balls();
-void move_balls();
+class Balls : public widget::Widget {
+  public:
+    virtual void update();
+    virtual void delay();
+    virtual void show();
+    virtual ~Balls() {}
+};
+
+} }
