@@ -2,7 +2,6 @@
 #include "SPI.h"
 #include "display.h"
 #include "tetris.h"
-#include "bugs.h"
 #include "balls.h"
 #include "utils.h"
 
@@ -20,13 +19,11 @@ const int power = 20;
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
 widget::tetris::Tetris tetris;
 widget::balls::Balls balls;
-widget::bugs::Bugs bugs;
 
-const int numWidgets = 3;
+const int numWidgets = 2;
 widget::Widget * widgets[] = {
   &balls,
   &tetris,
-  &bugs,
 };
 
 void setup() {
