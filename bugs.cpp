@@ -11,9 +11,9 @@ extern DisplayWrapper display;
 namespace widget { namespace bugs {
 
 struct bug_t {
-  int x, y;
-  int dx, dy;
-  int satiation;
+  uint32_t x, y;
+  uint32_t dx, dy;
+  uint32_t satiation;
 
   void randomize_direction()
   {
