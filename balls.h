@@ -8,6 +8,7 @@ namespace widget { namespace balls {
 
 class Balls : public widget::Widget {
   public:
+    virtual void reset();
     virtual void update();
     virtual void delay();
     virtual void show();

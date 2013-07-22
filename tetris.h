@@ -8,6 +8,7 @@ namespace widget { namespace tetris {
 
 class Tetris : public widget::Widget {
   public:
+    virtual void reset();
     virtual void delay();
     virtual void show();
     virtual ~Tetris() {}

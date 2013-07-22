@@ -2,7 +2,11 @@
 
 #include "LPD8806.h"
 #include "SPI.h"
+#ifdef TEST
+#include <display.h>
+#else
 #include "display.h"
+#endif
 #include "utils.h"
 #include "balls.h"
 
@@ -74,6 +78,7 @@ void show_balls() {
 }
 
 
+void Balls::reset() { display.clear(); }
 void Balls::update() { move_balls(); }
 void Balls::delay() { ::delay(BALL_DELAY); }
 void Balls::show() { show_balls(); }

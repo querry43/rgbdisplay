@@ -2,7 +2,11 @@
 
 #include "LPD8806.h"
 #include "SPI.h"
+#ifdef TEST
+#include <display.h>
+#else
 #include "display.h"
+#endif
 #include "tetris.h"
 #include "utils.h"
 
@@ -73,6 +77,8 @@ void Tetris::show() {
 }
 
 void Tetris::delay() { ::delay(TETRIS_SPEED); }
+
+void Tetris::reset() { display.clear(); }
 
 } }
 
