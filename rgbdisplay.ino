@@ -3,6 +3,7 @@
 #include "display.h"
 #include "tetris.h"
 #include "balls.h"
+#include "pulse.h"
 #include "utils.h"
 
 
@@ -11,19 +12,19 @@ const int nLEDs = 32;
 const int dataPin  = 22;
 const int clockPin = 10;
 const int powerPin = 11;
-const int power = 20;
+const int power = 50;
 
 #define MILLIS_PER_WIDGET 1000ul * 60 * 30
 
 
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
-widget::tetris::Tetris tetris;
 widget::balls::Balls balls;
+widget::pulse::Pulse pulse;
 
 const int numWidgets = 2;
 widget::Widget * widgets[] = {
+  &pulse,
   &balls,
-  &tetris,
 };
 
 void setup() {

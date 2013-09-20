@@ -14,6 +14,8 @@ class DisplayWrapper : public LPD8806 {
     
     void setPower(uint8_t p);
     
+    uint32_t scaleColor(color_t c, uint8_t t);
+
     void setPixelColor(uint16_t x, uint16_t y, uint8_t r, uint8_t g, uint8_t b);
     void setPixelColor(uint16_t x, uint16_t y, color_t color);
     
@@ -23,6 +25,7 @@ class DisplayWrapper : public LPD8806 {
     void fill(color_t color);
     
     color_t randomColor();
+    void randomColor(uint8_t& r, uint8_t& g, uint8_t& b);
     
     void dumpColorToSerial(const char* name, color_t c);
     void dumpColorToSerial(color_t c);

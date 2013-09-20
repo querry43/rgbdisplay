@@ -24,7 +24,15 @@ void DisplayWrapper::clear() {
 }
 
 uint32_t DisplayWrapper::randomColor() {
-  return Color(random(127), random(127), random(127));
+  uint8_t r, g, b;
+  randomColor(r, g, b);
+  return Color(r, g, b);
+}
+
+void DisplayWrapper::randomColor(uint8_t& r, uint8_t& g, uint8_t& b) {
+  r = random(127);
+  g = random(127);
+  b = random(127);
 }
 
 void DisplayWrapper::dumpColorToSerial(const char* name, uint32_t c) {
@@ -48,11 +56,15 @@ void DisplayWrapper::dumpColorToSerial(uint32_t c) {
 }
 
 uint32_t DisplayWrapper::scaleColor(uint32_t c) {
+  return scaleColor(c, power);
+}
+
+uint32_t DisplayWrapper::scaleColor(uint32_t c, uint8_t t) {
   byte green = (c & 0x7F0000) >> 16; // this logic should be a macro
   byte red   = (c & 0x007F00) >> 8;
   byte blue  = c & 0x00007F;
   
-  return Color(red * power / 100, green * power / 100, blue * power / 100);
+  return Color(red * t / 100, green * t / 100, blue * t / 100);
 }
 
 void DisplayWrapper::setPower(uint8_t p) {
