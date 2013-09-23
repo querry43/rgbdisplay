@@ -1,7 +1,6 @@
 #include "LPD8806.h"
 #include "SPI.h"
 #include "display.h"
-#include "tetris.h"
 #include "balls.h"
 #include "pulse.h"
 #include "utils.h"
