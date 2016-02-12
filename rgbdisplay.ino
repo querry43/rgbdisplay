@@ -3,6 +3,7 @@
 #include "display.h"
 #include "balls.h"
 #include "pulse.h"
+#include "comscore.h"
 #include "utils.h"
 
 
@@ -19,11 +20,13 @@ const int power = 50;
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
 widget::balls::Balls balls;
 widget::pulse::Pulse pulse;
+widget::comscore::Comscore comscore;
 
-const int numWidgets = 2;
+const int numWidgets = 3;
 widget::Widget * widgets[] = {
   &pulse,
   &balls,
+  &comscore,
 };
 
 void setup() {
