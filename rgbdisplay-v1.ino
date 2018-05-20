@@ -9,24 +9,21 @@
 
 // settings for teensy 2.0
 const int nLEDs = 32;
-const int dataPin  = 22;
-const int clockPin = 10;
-const int powerPin = 11;
+const int dataPin  = 10;
+const int clockPin = 9;
 const int power = 50;
 
 #define MILLIS_PER_WIDGET 1000ul * 60 * 30
 
 
-DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, powerPin, power);
+DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, power);
 widget::balls::Balls balls;
 widget::pulse::Pulse pulse;
-widget::comscore::Comscore comscore;
 
-const int numWidgets = 3;
+const int numWidgets = 2;
 widget::Widget * widgets[] = {
   &pulse,
   &balls,
-  &comscore,
 };
 
 void setup() {

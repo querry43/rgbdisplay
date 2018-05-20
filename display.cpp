@@ -13,9 +13,7 @@ const uint16_t yx_to_index[6][6] = {
   {-1, 28, 29, 30, 31, -1}
 };
 
-DisplayWrapper::DisplayWrapper(uint16_t n, uint8_t dpin, uint8_t cpin, uint8_t ppin, uint8_t p) : LPD8806(n, dpin, cpin) {
-  pinMode(ppin, OUTPUT);
-  digitalWrite(ppin, HIGH);
+DisplayWrapper::DisplayWrapper(uint16_t n, uint8_t dpin, uint8_t cpin, uint8_t p) : LPD8806(n, dpin, cpin) {
   setPower(p);
 }
 

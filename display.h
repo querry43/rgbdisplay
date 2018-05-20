@@ -10,7 +10,7 @@ class DisplayWrapper : public LPD8806 {
     uint32_t scaleColor(color_t c);
     
   public:
-    DisplayWrapper(uint16_t n, uint8_t dpin, uint8_t cpin, uint8_t ppin, uint8_t p = 100);
+    DisplayWrapper(uint16_t n, uint8_t dpin, uint8_t cpin, uint8_t p = 100);
     
     void setPower(uint8_t p);
     
