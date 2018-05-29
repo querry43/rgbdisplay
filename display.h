@@ -4,6 +4,10 @@
 
 typedef uint32_t color_t;
 
+// The DisplayWrapper is an abstraction of a 2-D RGB
+// LED display.  Origin and x-y directions may differ
+// between displays.
+
 class DisplayWrapper : public LPD8806 {
   protected:
     uint8_t power;

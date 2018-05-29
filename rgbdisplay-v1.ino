@@ -1,7 +1,9 @@
 #include "LPD8806.h"
 #include "SPI.h"
 #include "display.h"
+
 #include "balls.h"
+#include "healthpass.h"
 #include "pulse.h"
 
 
@@ -17,10 +19,12 @@ const int power = 50;
 
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, power);
 widget::balls::Balls balls;
+widget::healthpass::Healthpass healthpass;
 widget::pulse::Pulse pulse;
 
-const int numWidgets = 2;
+const int numWidgets = 3;
 widget::Widget * widgets[] = {
+  &healthpass,
   &pulse,
   &balls,
 };
