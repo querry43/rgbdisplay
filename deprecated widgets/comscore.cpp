@@ -4,7 +4,6 @@
 #include "SPI.h"
 #include "display.h"
 #include "comscore.h"
-#include "utils.h"
 
 extern DisplayWrapper display;
 

@@ -3,7 +3,6 @@
 #include "LPD8806.h"
 #include "SPI.h"
 #include "display.h"
-#include "utils.h"
 #include "balls.h"
 
 extern DisplayWrapper display;
@@ -74,8 +73,7 @@ void show_balls() {
 }
 
 
-void Balls::update() { move_balls(); }
+void Balls::update() { move_balls(); show_balls(); }
 void Balls::delay() { ::delay(BALL_DELAY); }
-void Balls::show() { show_balls(); }
 
 } }

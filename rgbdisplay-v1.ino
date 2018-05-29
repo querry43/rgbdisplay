@@ -3,8 +3,6 @@
 #include "display.h"
 #include "balls.h"
 #include "pulse.h"
-#include "comscore.h"
-#include "utils.h"
 
 
 // settings for teensy 2.0
@@ -13,7 +11,8 @@ const int dataPin  = 10;
 const int clockPin = 9;
 const int power = 50;
 
-#define MILLIS_PER_WIDGET 1000ul * 60 * 30
+#define MINUTES_PER_WIDGET 30
+#define MILLIS_PER_WIDGET 1000ul * 60 * MINUTES_PER_WIDGET
 
 
 DisplayWrapper display = DisplayWrapper(nLEDs, dataPin, clockPin, power);
@@ -40,11 +39,9 @@ void loop() {
   previousMillis = millis();
 
   widgets[currentWidget]->reset();
-  widgets[currentWidget]->show();
   while (millis() - previousMillis < MILLIS_PER_WIDGET) {
-    widgets[currentWidget]->delay();
     widgets[currentWidget]->update();
-    widgets[currentWidget]->show();
+    widgets[currentWidget]->delay();
   }
 
   currentWidget = (currentWidget + 1) % numWidgets;

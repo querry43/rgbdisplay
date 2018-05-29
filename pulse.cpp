@@ -4,7 +4,6 @@
 #include "SPI.h"
 #include "display.h"
 #include "pulse.h"
-#include "utils.h"
 
 extern DisplayWrapper display;
 
@@ -47,18 +46,6 @@ Pixel p[6][6];
 void Pulse::delay() { ::delay(50ul); }
 
 void Pulse::update() {
-  for (unsigned int x = 0; x < 6; x++) {
-    for (unsigned int y = 0; y < 6; y++) {
-      p[x][y].update();
-    }
-  }
-}
-
-
-void Pulse::show() {
-  uint8_t r, g, b;
-  display.randomColor(r, g, b);
-  
   for (unsigned int x = 0; x < 6; x++) {
     for (unsigned int y = 0; y < 6; y++) {
       display.setPixelColor(x, y, p[x][y].color);
